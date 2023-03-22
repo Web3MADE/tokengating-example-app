@@ -1,4 +1,4 @@
-import { useAuthenticatedFetch } from "./useAuthenticatedFetch";
+import { useAuthenticatedFetch } from "@shopify/app-bridge-react";
 import { useMemo } from "react";
 import { useQuery } from "react-query";
 

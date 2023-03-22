@@ -13,9 +13,12 @@ import {
   TextContainer,
   TextField,
 } from "@shopify/polaris";
-import { ContextualSaveBar, Toast } from "@shopify/app-bridge-react";
+import {
+  ContextualSaveBar,
+  Toast,
+  useAuthenticatedFetch,
+} from "@shopify/app-bridge-react";
 import { useField, useForm } from "@shopify/react-form";
-import { useAuthenticatedFetch } from "../hooks";
 import { TokengatesResourcePicker } from "../components/TokengatesResourcePicker";
 
 export default function CreateTokengate() {

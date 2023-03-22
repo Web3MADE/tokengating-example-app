@@ -1,9 +1,9 @@
 import { myAppMetafieldNamespace } from "./constants.js";
 
-const YOUR_FUNCTION_ID = "YOUR_FUNCTION_ID";
+const YOUR_FUNCTION_ID = "22341419009";
 console.log(`Loaded function id ${YOUR_FUNCTION_ID}`);
 
-if (YOUR_FUNCTION_ID == "YOUR_FUNCTION_ID") {
+if (YOUR_FUNCTION_ID == "22341419009") {
   console.error(`
     ************************************************************
     You must set the function ID in web/api/create-discount.js.
@@ -49,7 +49,10 @@ const CREATE_AUTOMATIC_DISCOUNT_MUTATION = `
 `;
 
 export const createAutomaticDiscount = async (client, gateConfiguration) => {
-  const shouldCreateDiscount = await noMatchingFunction(client, gateConfiguration);
+  const shouldCreateDiscount = await noMatchingFunction(
+    client,
+    gateConfiguration
+  );
   if (shouldCreateDiscount) {
     const response = await client.query({
       data: {
@@ -68,9 +71,9 @@ export const createAutomaticDiscount = async (client, gateConfiguration) => {
                 key: "gate_configuration_id",
                 namespace: myAppMetafieldNamespace,
                 type: "single_line_text_field",
-                value: gateConfiguration.id
-              }
-            ]
+                value: gateConfiguration.id,
+              },
+            ],
           },
         },
       },
@@ -85,12 +88,16 @@ const noMatchingFunction = async (client, gateConfiguration) => {
     },
   });
 
-  if (!Boolean(response?.body?.data?.automaticDiscountNodes?.nodes)) return true;
+  if (!Boolean(response?.body?.data?.automaticDiscountNodes?.nodes))
+    return true;
   for (const node of response.body.data.automaticDiscountNodes.nodes) {
     const functionId = node.discount.automaticDiscount.functionId;
     const gateConfigurationId = node.metafield.value;
-    if (YOUR_FUNCTION_ID == functionId &&
-        gateConfiguration.id == gateConfigurationId) return false;
+    if (
+      YOUR_FUNCTION_ID == functionId &&
+      gateConfiguration.id == gateConfigurationId
+    )
+      return false;
   }
 
   return true;

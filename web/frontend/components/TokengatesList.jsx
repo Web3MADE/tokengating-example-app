@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { Button, Card, IndexTable, Stack } from "@shopify/polaris";
-import { useAppQuery, useAuthenticatedFetch } from "../hooks";
+import { useAppQuery } from "../hooks";
+import { useAuthenticatedFetch } from "@shopify/app-bridge-react";
 
 export function TokengatesList() {
   const fetch = useAuthenticatedFetch();

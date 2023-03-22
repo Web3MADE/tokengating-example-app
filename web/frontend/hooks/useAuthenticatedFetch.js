@@ -1,5 +1,4 @@
-import { authenticatedFetch } from "@shopify/app-bridge-utils";
-import { useAppBridge } from "@shopify/app-bridge-react";
+import { useAuthenticatedFetch, useAppBridge } from "@shopify/app-bridge-react";
 import { Redirect } from "@shopify/app-bridge/actions";
 
 /**
@@ -14,16 +13,6 @@ import { Redirect } from "@shopify/app-bridge/actions";
  *
  * @returns {Function} fetch function
  */
-export function useAuthenticatedFetch() {
-  const app = useAppBridge();
-  const fetchFunction = authenticatedFetch(app);
-
-  return async (uri, options) => {
-    const response = await fetchFunction(uri, options);
-    checkHeadersForReauthorization(response.headers, app);
-    return response;
-  };
-}
 
 function checkHeadersForReauthorization(headers, app) {
   if (headers.get("X-Shopify-API-Request-Failure-Reauthorize") === "1") {

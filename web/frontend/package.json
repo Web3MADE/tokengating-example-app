@@ -12,7 +12,6 @@
   "dependencies": {
     "@shopify/app-bridge": "^3.7.2",
     "@shopify/app-bridge-react": "^3.7.2",
-    "@shopify/app-bridge-utils": "^3.5.1",
     "@shopify/polaris": "^10.31.0",
     "@shopify/react-form": "^2.5.0",
     "@vitejs/plugin-react": "3.1.0",
